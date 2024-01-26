@@ -1,0 +1,83 @@
+{% extends 'Layouts/new.html.twig' %}
+
+{% block content %}
+    <main class="my-4 my-lg-8">
+        {% if document.property('section') %}
+            <div class="container nmt-6">
+                <div class="row p-3">
+                    <div class="{{ webOtherLang ? 'col-12 col-lg-9' : 'col' }} p-4 bg-plaster-50 nav-undecorated">
+                        <h1 class="h2 my-0">
+                            <a href="{{ document.property('navStartNode') }}">
+                                {{ document.property('section') }}
+                            </a>
+                        </h1>
+                    </div>
+
+                    {% if webOtherLang %}
+                        <div class="col-12 col-lg-3 bg-plaster-50 px-4 pb-4 pt-0 pt-lg-5 text-lg-right nav-undecorated">
+                            <a class="ml-auto" href="{{ webOtherLang.path }}">
+                                <i class="fal fa-globe"></i>
+                                {{ 'this_site_in_other_lang'|trans([], null, language) }}
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="container">
+            <div class="row">
+                <div class="d-none d-xl-block col-xl-3 collapse">
+                    {% if navigation.pages %}
+                        {% set menuRenderer = pimcore_nav_renderer('menu') %}
+                        {% do menuRenderer.setPartial(
+                            'Navigation/left.html.twig', {'pages': navigation}
+                        ) %}
+                        {{ menuRenderer.render(navigation) | raw }}
+                    {% endif %}
+                </div>
+
+                <div class="col-12 col-xl-9 mb-6 mb-xl-0">
+                    <div class="row">
+                        <div class="col-12 col-lg-12 mb-6 mb-lg-0">
+                            {{ pimcore_areablock('mainAreablock', {
+                                'allowed': ['carousel','puff-block3333','wysiwyg','news-subsite','event-subsite'],
+                                'params': {
+                                    'carousel': {
+                                        'subsiteClass': 'subsite-item-height',
+                                        'subsiteCaption': 'subsite-caption',
+                                    },
+                                    'puff-block3333': {
+                                        'itemsPerRow': 3,
+                                        'containerClass': 'container mb-4 mt-2 mt-lg-4 px-0',
+                                        'colClass': 'col-12 col-sm-6 col-lg-4 col-xl-4',
+                                    },
+                                    'news-subsite': { 'baseuri': websiteConfig.baseuri },
+                                    'event-subsite': { 'baseuri': websiteConfig.baseuri },
+                                }
+                            }) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {% if editmode %}
+        <style>
+            table, table td, table th {border:none}
+            .pimcore_block_button_up .pimcore_block_button_down, .pimcore_open_link_button {display:none !important;}
+            .pimcore_open_link_button {display:none !important;}
+            #pimcore_editable_rightAreablock .pimcore_area_edit_button,
+            #pimcore_editable_mainAreablock .pimcore_area_edit_button {z-index: 9999;}
+            .x-window .pimcore_tag_input {border: 1px solid #dedbd9;}
+            .info {font-weight:700;margin:0;}
+            .margins {margin:8px 0 0 0;}
+            .embed-responsive {z-index:1;}
+            .pimcore_area_entry {margin-bottom: 40px!important;}
+            .main{overflow:visible;}
+            .pimcore_area_buttons {display: block;visibility: visible !important;}
+        </style>
+    {% endif %}
+{% endblock %}
+

@@ -1,0 +1,9 @@
+#pimcore_menu_news {
+	background-image: url(/bundles/pimcoreadmin/img/flat-white-icons/news.svg) !important;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pimcore_icon_news {
+	background-image: url(/bundles/pimcoreadmin/img/icon/newspaper.png) !important;
+}

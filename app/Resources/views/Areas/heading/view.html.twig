@@ -1,0 +1,7 @@
+{% if document.property('bootstrap') and editmode %}
+  <div class="alert alert-danger" role="alert">
+    Ersätt heading-elementet!
+  </div>
+{% endif %}
+
+<h2>{{ pimcore_input('heading', { 'width': width ?? '' }) }}</h2>

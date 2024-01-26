@@ -1,0 +1,79 @@
+<hr>
+<div class="container">
+    <div class="row">
+        {% if image %}
+            <div class="col-sm col-md-4 col-lg-4 col-xl-4 px-0">
+                {{ ehl_staff_display_image(
+                    'staff/' ~ person.uid ~ '.jpg',
+                    person.displayName,
+                    '',
+                    'width:180px;',
+                ) | raw }}
+            </div>
+        {% endif %}
+
+        <div class="col-sm col-md col-lg col-xl px-0">
+            {% if heading and newlucat is not defined %}
+                <h3 class="mt-0">{{ heading }}</h3>
+            {% elseif heading and newlucat is defined and newlucat and LeaveOfAbsence %}
+                <h3 class="mt-0">{{ heading }}</h3>
+            {% elseif heading and newlucat is defined and newlucat and not LeaveOfAbsence %}
+                <h3 class="mt-0">
+                    <a class="nav-undecorated" href="{{ staffmoreinfo }}">
+                        {{ heading }}
+                    </a>
+                </h3>
+            {% endif %}
+
+            {% if roles %}
+                <p>{{ roles | raw }}</p>
+            {% endif %}
+
+            {% if not LeaveOfAbsence %}
+                <p>
+                    {% if mail is defined and mail %}
+                        <a href="mailto:{{ mail }}" title="{{ mail }}">{{ mail }}</a><br>
+                    {% endif %}
+                    {% if phone is defined and phone %}
+                        {{ 'phone'|trans|capitalize ~ ': ' ~ phone }}<br>
+                    {% endif %}
+                    {% if room is defined and room %}
+                        {{ 'room'|trans|capitalize ~ ': ' ~ room }}<br>
+                    {% endif %}
+                </p>
+
+                {% if website and moreinfo is not defined and newlucat is not defined %}
+                    <p>
+                        {{ 'personal_website'|trans }}:
+                        <a href="{{ website }}" title="{{ website }}">{{ website }}</a>
+                    </p>
+                {% endif %}
+
+                {% if employeeSpecialRole is defined and employeeSpecialRole and detail is defined and detail %}
+                    <p>
+                        {{ ehl_staff_person_special_role(employeeSpecialRole, detail ?? false, baseuri, isAreaBrick ?? false) | raw }}
+                        {{ ' ' ~ 'at'|trans|lower ~ ' ' ~  mainDepartment.name }}
+                    </p>
+                {% endif %}
+
+                {% if portalUrl is defined and portalUrl and moreinfo is not defined and newlucat is not defined %}
+                    <p>
+                        <a href="{{ portalUrl }}" title="{{ portalUrl }}">
+                            {{ 'my_profile_lucris'|trans }}
+                        </a>
+                    </p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    {% if moreinfo is defined and moreinfo and not LeaveOfAbsence %}
+        <div class="row">
+            <p>
+                <a href="{{ moreinfo }}">
+                    {{ 'show more info'|trans|capitalize }}
+                </a>
+            </p>
+        </div>
+    {% endif %}
+</div>

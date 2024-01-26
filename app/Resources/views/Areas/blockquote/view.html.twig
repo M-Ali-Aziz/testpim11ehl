@@ -1,0 +1,22 @@
+{% if document.property('bootstrap') %}
+    <div class="m-5 text-dark-grey">
+        <blockquote class="blockquote">
+            <p class="mb-0">
+                <i class="fas fa-3x fa-quote-right fa-pull-left"></i>
+                {{ pimcore_textarea('blockquote', { 'nl2br': true }).data }}
+            </p>
+            {% if not pimcore_input('quoted').empty %}
+                <footer class='blockquote-footer text-right'>
+                    <cite>{{ pimcore_input('quoted').data }}</cite>
+                </footer>
+            {% endif %}
+        </blockquote>
+    </div>
+{% else %}
+    <blockquote>
+        <p>{{ pimcore_textarea('blockquote', { 'nl2br': true }).data }}</p>
+        {% if not pimcore_input('quoted').empty %}
+            <footer>{{ pimcore_input('quoted').data }}</footer>
+        {% endif %}
+    </blockquote>
+{% endif %}

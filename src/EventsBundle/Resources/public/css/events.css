@@ -1,0 +1,15 @@
+#pimcore_menu_events {
+	background-image: url(/bundles/pimcoreadmin/img/flat-white-icons/calendar.svg) !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    /*filter: grayscale(100%) brightness(100%) !important;
+    -webkit-filter: grayscale(100%) brightness(100%) !important;*/
+}
+/*#pimcore_menu_events:hover {
+    filter: grayscale(0%) brightness(100%) !important;
+    -webkit-filter: grayscale(0%) brightness(100%) !important;
+}*/
+
+.pimcore_icon_events {
+	background-image: url(/bundles/pimcoreadmin/img/flat-color-icons/calendar.svg) !important;
+}

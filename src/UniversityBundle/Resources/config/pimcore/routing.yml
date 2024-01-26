@@ -1,0 +1,5 @@
+university:
+    resource: "@UniversityBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
