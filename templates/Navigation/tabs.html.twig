@@ -1,0 +1,15 @@
+<ul class="nav nav-tabs nav-undecorated" role="tablist">
+    {% if pages %}
+        {% for page in pages %}
+            <li class="nav-item">
+                <a class="nav-link {{ page.active() ? 'active' }}"
+                   href="{{ page.href }}"
+                   role="tab"
+                   aria-selected="{{ page.active() }}"
+                >
+                    {{ page.label }}
+                </a>
+            </li>
+        {% endfor %}
+    {% endif %}
+</ul>

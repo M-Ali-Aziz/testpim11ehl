@@ -1,0 +1,23 @@
+{% extends 'Layouts/new.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 col-lg-8 mb-6 mb-lg-0">
+            <article>
+                <h1>{{ 'contact'|trans }}</h1>
+                {{ ehl_staff_detail(
+                    employee,
+                    {
+                        'employeeSpecialRole': employeeSpecialRole,
+                        'mainDepartment': mainDepartment,
+                        'detail': true,
+                        'baseuri': (websiteConfig.baseuri != '/') ?: '',
+                        'language': language,
+                    },
+                ) | raw }}
+            </article>
+        </div>
+        <div class="col-12 col-lg-4">
+        </div>
+    </div>
+{% endblock %}

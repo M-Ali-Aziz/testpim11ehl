@@ -1,0 +1,28 @@
+{% if editmode %}
+    <div class="bg-sky-50 py-4 my-8">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="mt-0">{{ pimcore_link('readmore') }}</h2>
+                    <p>{{ pimcore_input('beskrivning') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div class="bg-sky-50 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h2 class="mt-0">
+                        <a href="{{ pimcore_link('readmore').href }}" class="nav-undecorated">
+                            {{ pimcore_link('readmore').text }}&nbsp;
+                            <i class="fal fa-chevron-circle-right fa-lg"></i>
+                        </a>
+                    </h2>
+                    <p>{{ pimcore_input('beskrivning') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

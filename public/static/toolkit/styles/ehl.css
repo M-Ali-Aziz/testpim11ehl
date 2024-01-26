@@ -1,0 +1,179 @@
+
+.pimcore_area_content > p,
+.pimcore_area_content > p:last-child,
+.pimcore_area_content > ul.nav-list,
+.pimcore_area_content > .figure,
+.pimcore_area_content > .embed-responsive,
+.pimcore_area_content > .table,
+.pimcore_area_content > ol,
+.pimcore_area_content > ul:last-child,
+.pimcore_area_content > dl,
+.pimcore_area_content > .mb-6 {
+    margin-bottom: 1rem!important;
+}
+
+/*
+.pimcore_area_content:last-child > ul.nav-list,
+.pimcore_area_content:last-child > .figure,
+.pimcore_area_content:last-child > .embed-responsive,
+.pimcore_area_content:last-child > .table,
+.pimcore_area_content:last-child > ol,
+.pimcore_area_content:last-child > dl,
+.pimcore_area_content:last-child > .mb-6 {
+    margin-bottom: 0!important;
+}*/
+
+header p:last-child {
+    margin-bottom: 1rem!important;
+}
+
+.hero-title p {
+    margin-top: 1rem;
+}
+
+@media (min-width: 1200px) {
+    .masonry-tile-lg .blockline h1, .masonry-tile-lg .blockline .h1 {
+        box-shadow: 5px 0 0 #fff, -5px 0 0 #fff;
+        font-size: 2.125rem;
+        line-height: 3.325rem;
+        padding: 5px 0;
+    }
+}
+
+.pimcore_area_content:last-child > .mason {
+  margin-bottom:60px!important;
+}
+  .pimcore_area_content:first-child > .mason {
+    margin-top:20px!important;
+}
+
+.pimcore_area_infobox ul {
+    padding-inline-start: 20px;
+}
+
+bold, strong {
+    font-weight: 600;
+}
+
+/****/
+/*
+.nav-accordion .nav-link.active {
+    background: #f9f8f5;
+    border-left: 0.2rem solid #a6a5a1;
+    color: #4d4c44;
+    font-weight: 500;
+}
+
+.nav-accordion li li .nav-link.active {
+    padding-left: 1.6rem;
+}
+
+.nav-accordion li li .nav-link {
+    padding-left: 1.7rem;
+}
+
+.nav-accordion li li li .nav-link {
+    padding-left: 2.6rem;
+}
+*/
+/****/
+
+.header .nav-item.active {
+    border-color: #a6a5a1;
+}
+
+.header .nav-item {
+    border-bottom: 2px solid transparent;
+}
+
+.medarbetarweb-sub {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+@media (max-width: 576px) {
+    .medarbetarweb-title {font-size: 1.475rem;}
+    .title-with-sub {line-height: 1.275;}
+    .medarbetarweb-sub {font-size: 0.8rem;}
+}
+
+/* Subsites */
+@media (min-width: 768px) {
+.subsite-item-height {height:450px!important;}
+}
+
+@media (min-width: 992px) {
+.subsite-caption p .a, .subsite-caption p a {
+    font-size: 2.325rem!important;
+    line-height: 3.575rem!important;
+    }
+}
+
+/* Fix padding for nav-link on mobile mainNav*/
+#nav-link-padding-fix .nav-link {
+      padding-right: 0.5rem;
+}
+
+#nav-link-padding-fix .flex-1 {
+    flex: none;
+}
+
+
+/* Fix Solr-search-result new layout */
+#solrsearchresult .btn-outline-primary {
+    color: #f9f8f5 !important;
+    background-color: #875e29 !important;
+}
+
+#solrsearchresult .btn-outline-primary:hover {
+    background-color: #6a4a20 !important;
+    border-color: #60431d !important;
+}
+
+#search-content .btn-link{
+    padding: .5rem 1rem !important;
+    background-color: #fff;
+}
+
+#search-content .border-secondary,
+#search-content .cborder-secondary>*,
+#search-content .gcborder-secondary>*>*
+{
+    border-color: #dee2e6 !important;
+}
+
+#search-content .btn{
+    border-radius: 0;
+}
+
+#search-content .title a{
+    text-decoration: none;
+}
+#search-content .title a:hover{
+    text-decoration: underline;
+}
+
+/* Fix :focus */
+.btn.focus, .btn:focus {
+    outline: -webkit-focus-ring-color auto 5px;
+}
+
+a:focus {
+    outline: -webkit-focus-ring-color auto 5px !important;
+}
+
+a.nav-block:focus:not(.card) {
+    border: solid #1E90FF 5px;
+    border-radius: 5px;
+}
+
+
+/* Fix to show dropdown-menu while tabbing (focus-within) */
+.dropdown-hover:focus-within .dropdown-menu{
+    display:block !important;
+}
+
+/* Talande webb extra knapp */
+#__ba_panel {
+    display: none;
+}

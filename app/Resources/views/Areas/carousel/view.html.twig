@@ -1,8 +1,0 @@
-{% set id = 'carousel-'~random() %}
-{% set slides = pimcore_block('carousel-item').empty ? 2 : pimcore_block('carousel-item').count %}
-
-{% if editmode %}
-    {% include 'Areas/carousel/_editmode.html.twig' %}
-{% else %}
-    {% include 'Areas/carousel/_notEditmode.html.twig' %}
-{% endif %}

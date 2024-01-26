@@ -1,9 +1,0 @@
-#pimcore_menu_university {
-    background-image: url(/bundles/pimcoreadmin/img/flat-white-icons/globe-multiple.svg) !important;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-.pimcore_icon_university {
-    background-image: url(/bundles/pimcoreadmin/img/flat-color-icons/globe-multiple.svg) !important;
-}

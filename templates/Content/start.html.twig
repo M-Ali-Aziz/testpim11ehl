@@ -1,0 +1,23 @@
+{% extends 'Layouts/new.html.twig' %}
+
+{% block content %}
+    {{ pimcore_areablock('mainAreablock', {
+        'allowed': ['carousel','hero-video','cards-block','news-block','events-block','puff-block3333', 'unibuddy-carousel', 'banner'],
+        'params': {
+            'news-block': {
+                'baseuri': websiteConfig.baseuri,
+                'itemsPerRow': 4,
+                'newsTop': true,
+                'startsite': startsite
+            },
+            'events-block': {
+                'baseuri': websiteConfig.baseuri
+            },
+            'puff-block3333': {
+                'itemsPerRow': 4,
+                'containerClass': 'container mb-4 mt-4 mt-lg-8 mb-lg-8',
+                'colClass': 'col-12 col-sm-6 col-lg-4 col-xl-3'
+            }
+        }
+    }) }}
+{% endblock %}

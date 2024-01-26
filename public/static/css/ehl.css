@@ -1,0 +1,159 @@
+.cycle-slideshow {
+  background-color: #F8F3EA;
+  height: 368px;
+  overflow: hidden;
+}
+
+.tag {
+    text-decoration: none;
+    font-size: 100%;
+    margin: 0 3px 0 0;
+}
+.tags-wrapper {
+  padding: 15px;
+  background-color: #FFFFFF;
+}
+
+.lusem {
+  font-size: 26px!important;
+  line-height: 26px!important;
+  margin-top: 45px !important;
+}
+#header_content #header_logo {
+  width: 144px;
+  background-image: url(../images/logos/logo-ehl-sv.png);
+}
+#header_content #header_logo_en {
+  background: url(../images/logos/logo-ehl-en.png) no-repeat scroll 0 0 transparent;
+  float: right;
+  height: 95px;
+  margin-left: 16px;
+  margin-right: 16px;
+  margin-top: 13px;
+  width: 144px;
+}
+#footer_logo {
+  background-image: url(../images/logos/footer-logo-ehl-sv.png);
+  height: 115px;
+  width: 177px;
+}
+#footer_logo_en {
+  background: url(../images/logos/footer-logo-ehl-en.png) no-repeat scroll 0 0 transparent;
+  display: block;
+  float: left;
+  height: 103px;
+  width: 192px;
+}
+#footer_extra_logos a#footer_equis,
+#footer_extra_logos a#footer_amba {
+  width: 80px;
+  height: 80px;
+}
+#footer_aacsb {
+  background: url(../images/aacsb.png);
+  background-repeat:no-repeat;
+  background-size:contain !important;
+  background-position: center;
+}
+#footer_equis {
+  background: url(../images/equis.png);
+}
+#footer_amba {
+  background: url(../images/amba.png);
+}
+#footer_social_media .footer_sub_menu:last-child {
+  padding-top: 0;
+}
+/*div > img,*/
+#content_sidebar div > img {
+  margin-bottom: 8px;
+}
+@media all and (max-width: 640px) {
+
+  #footer_logo {
+    background-image: url(../images/logos/footer-logo-ehl-sv-responsive.png);
+    height: 18rem;
+    width: 100%;
+  }
+  #footer_logo_en {
+    background: url(../images/logos/footer-logo-ehl-en-responsive.png) no-repeat center center;
+    background-size: contain;
+    width: 100%;
+    height: 18rem;
+  }
+  #footer_extra_logos a#footer_equis,
+  #footer_extra_logos a#footer_amba {
+    height: 5.625rem;
+    width: 5.625rem;
+  }
+  #header_content #header_logo_en {
+    display: none;
+  }
+  #header_content #header_titles #main_title.fek,
+  #header_content #header_titles #main_title.nek {
+    font-size: 1.75rem;
+  }
+  #header_content #header_titles #main_title.lusem {
+    font-size: 1.75rem!important;
+    line-height: 2rem!important;
+    margin-top: 1.875rem !important;
+  }
+  #footer_social_media .footer_sub_menu:last-child {
+    padding: 1.875rem 0;
+  }
+  .push-8 {
+    left: 0;
+  }
+  div > img,
+  #content_sidebar div > img {
+    margin-bottom: 1rem;
+  }
+}
+
+.bg_beige {
+  background-color: #F8F3EA;
+}
+.bg_pink {
+  background-color: #FBE5F0;
+}
+.bg_green {
+  background-color: #DFEFE8;
+}
+.bg_blue {
+  background-color: #D7EEF7;
+}
+.bg_yellow {
+  background-color: #F8F368;
+}
+.bg_white {
+  background-color: #fff;
+}
+
+#pc-cookie-notice {
+    padding: 15px 8px!important;
+    background: #303030!important;
+    color:#888!important;
+    font-size: 14px!important;
+}
+#pc-cookie-notice #pc-button {
+    top:8px!important;
+}
+#pc-cookie-notice #pc-button button {
+    font-weight: normal!important;
+    background: #c8c8c8!important;
+    border-radius: 5px!important;
+    padding: 6px 15px!important;
+    color: #303030;
+}
+#pc-cookie-notice a {
+    color: #c8c8c8!important;
+    text-decoration: none!important;
+}
+#pc-cookie-notice a:hover {
+    text-decoration: underline!important;
+}
+
+/* Talande webb extra knapp */
+#__ba_panel {
+  display: none;
+}

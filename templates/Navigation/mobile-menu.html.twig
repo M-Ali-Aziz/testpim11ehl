@@ -1,0 +1,108 @@
+{% set mainMenu = websiteObject.mainMenu %}
+{% set targetGroups = websiteObject.targetgroups %}
+{% set subsites = websiteObject.subsites %}
+{% set departments = websiteObject.departments %}
+
+{# Main Menu Mobile - Hamburger Menu #}
+<div class="modal fade" id="nav-mobile" tabindex="-1" role="dialog" aria-labelledby="nav-mobile-label" aria-hidden="true">
+    <div class="modal-dialog my-0 mx-auto" role="document">
+        <div class="modal-content border-0 rounded-0">
+            <nav class="nav border-bottom p-3 flex-row justify-content-between align-items-center sticky-top bg-white">
+                <div id="nav-mobile-label" class="h3 m-0"><span class="sr-only"></span></div>
+                <button type="button" class="border-0 bg-transparent cursor-pointer lh-0 p-2 nm-2" data-dismiss="modal" aria-controls="nav-mobile" aria-expanded="false" aria-label="{{ 'ehl_hide_menu'|trans }}">
+                    <span aria-hidden="true"><i class="fal fa-times fa-lg"></i></span>
+                </button>
+            </nav>
+
+            <ul class="mobile-nav mobile-nav-root border-0 nav-collapse font-size-sm nav-undecorated">
+                {# MainMenu pages #}
+                {% if mainMenu %}
+                    {% for page in mainMenu %}
+                        <li class="mobile-nav-item">
+                            <div class="mobile-nav-container">
+                                {{ ehl_nav_get_a_tag(document, page)|raw }}
+                            </div>
+
+                            {# Hierarchy of child multiple levels #}
+                            {% if page.children %}
+                                {{ ehl_nav_children_list(document, page)|raw }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                {# TargetGroups pages #}
+                {% if targetGroups %}
+                    {% for page in targetGroups %}
+                        <li class="mobile-nav-item">
+                            <div class="mobile-nav-container">
+                                <a class="nav-link" href="{{ page.href }}">{{ page.property('navigation_name') }}</a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                {# Subsite pages #}
+                {% if subsites %}
+                    {% for page in subsites %}
+                        <li class="mobile-nav-item">
+                            <div class="mobile-nav-container">
+                                {{ ehl_nav_get_a_tag(document, page)|raw }}
+                            </div>
+
+                            {# Hierarchy of child multiple levels #}
+                            {% if page.children %}
+                                {{ ehl_nav_children_list(document, page)|raw }}
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                {% endif %}
+
+                {# Departments Pages #}
+                {% if departments %}
+                    <li class="mobile-nav-item">
+                        <div class="mobile-nav-container">
+                            <a href="#" class="nav-link">{{ 'departments_toolbar_dropdown'|trans }}</a>
+                            <a href="#departmentsObj" class="mobile-nav-toggle collapsed" data-target="#departmentsObj" data-toggle="collapse" aria-expanded="false" aria-controls="departmentsObj">
+                                <span class="collapse-show"><i class="fal fa-plus-circle"></i></span>
+                                <span class="collapse-hide"><i class="fal fa-minus-circle"></i></span>
+                            </a>
+                        </div>
+
+                        <ul class="mobile-nav collapse" id="departmentsObj">
+                            {% for page in departments %}
+                                {# If the document is a main site, show only the first level of navigation #}
+                                {% if page.parentId == 1 %}
+                                    <li class="mobile-nav-item">
+                                        <div class="mobile-nav-container">
+                                            {% if page.type == 'link' %}
+                                                <a class="nav-link" href="{{ page.href }}">
+                                                    {{ page.property('navigation_name') ?? page.property('toolbarTitle') ?? '---' }}
+                                                </a>
+                                            {% else %}
+                                                <a class="nav-link" href="{{ page.fullPath }}">
+                                                    {{ page.property('navigation_name') ?? page.property('toolbarTitle') ?? '---' }}
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    </li>
+                                {% else %}
+                                    <li class="mobile-nav-item">
+                                        <div class="mobile-nav-container">
+                                            {{ ehl_nav_get_a_tag(document, page)|raw }}
+                                        </div>
+
+                                        {# Hierarchy of child multiple levels #}
+                                        {% if page.children %}
+                                            {{ ehl_nav_children_list(document, page)|raw }}
+                                        {% endif %}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</div>

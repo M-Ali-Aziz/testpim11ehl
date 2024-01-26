@@ -1,0 +1,26 @@
+<nav aria-label="{{ 'ehl_pagination'|trans }}" class="my-3">
+    <ul class="pagination pagination-sm">
+        {# Previous page link #}
+        {% if paginatorPages.previous is defined %}
+            <li class="page-item">
+                <a class="page-link" href="{{ urlprefix ~ paginatorPages.previous }}">
+                    <span class="page-icon"><i class="fal fa-chevron-left fa-sm"></i></span>
+                    <span class="page-label"> Föregående</span>
+                </a>
+            </li>
+        {% endif %}
+        {# Numbered page links #}
+        {% for page in paginatorPages.pagesInRange %}
+            <li class="page-item {{ paginatorPages.current == page ? 'active' }}">
+                <a class="page-link" href="{{ urlprefix ~ page }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+        {# Next page link #}
+        <li class="page-item {{ paginatorPages.next is not defined ? 'disabled' }}">
+            <a class="page-link" href="{{ urlprefix ~ paginatorPages.next }}">
+                <span class="page-label">Nästa </span>
+                <span class="page-icon"><i class="fal fa-chevron-right fa-sm"></i></span>
+            </a>
+        </li>
+    </ul>
+</nav>

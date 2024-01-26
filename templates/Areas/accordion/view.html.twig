@@ -1,0 +1,84 @@
+{% if editmode %}
+    <style>
+        .pimcore_block_button_up, .pimcore_block_button_down { display: block !important; }
+        .pimcore_block_amount { display: none !important; }
+    </style>
+{% endif %}
+
+{% set id = 'accordion-'~random() %}
+
+<div class="accordion" id="{{ id }}">
+    {% for i in pimcore_iterate_block(pimcore_block('accordion')) %}
+        {% set entryId = id ~ '-' ~ pimcore_block('accordion').current() %}
+        {% if editmode %}
+            <div class="card">
+                <div class="card-header bg-plaster-50" id="heading-{{ entryId }}">
+                    <div class="pt-3 pl-3"><strong>Rubrik</strong></div>
+                    {{ pimcore_input('headline', { 'class': 'mt-3 ml-3 mr-3 mb-2 nmt-1'}) }}
+                    <div class="pt-0 pl-3"><strong>Kurskod</strong></div>
+                    {{ pimcore_input('kurskod', { 'class': 'ml-3 mr-3 mb-2 nmt-1'}) }}
+                    <div class="pt-0 pl-3">
+                        <strong>Visa ut kursplan från UBAS</strong>&nbsp;&nbsp;&nbsp;
+                        Engelsk: {{ pimcore_checkbox('kursplan') }}&nbsp;&nbsp;&nbsp;
+                        Svensk: {{ pimcore_checkbox('kursplanSV') }}
+                    </div>
+                    <div>
+                        <button class="h5 btn btn-link collapsed" data-toggle="collapse"
+                                data-target="#collapse-{{ entryId }}" aria-expanded="true"
+                                aria-controls="collapse-{{ entryId }}">
+                            <div class="float-right">
+                                <span class="collapse-hide"><i class="fal fa-chevron-up"></i></span>
+                                <span class="collapse-show"><i class="fal fa-chevron-down"></i></span>
+                            </div>
+                            {{ pimcore_input('headline').data }}
+                        </button>
+                    </div>
+                </div>
+                <div id="collapse-{{ entryId }}" class="collapse" aria-labelledby="heading-{{ entryId }}"
+                     data-parent="#{{ id }}">
+                    <div class="card-body">
+                        {{ pimcore_wysiwyg('text', { 'customConfig': '/static/js/ckeditor.js' }) }}
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <div class="card">
+                <div class="card-header bg-plaster-50" id="heading-{{ entryId }}">
+                    <div>
+                        <button class="h5 btn btn-link collapsed" data-toggle="collapse"
+                                data-target="#collapse-{{ entryId }}" aria-expanded="true"
+                                aria-controls="collapse-{{ entryId }}">
+                            <div class="float-right">
+                                <span class="collapse-hide"><i class="fal fa-chevron-up"></i></span>
+                                <span class="collapse-show"><i class="fal fa-chevron-down"></i></span>
+                            </div>
+                            {{ pimcore_input('headline').data }}
+                        </button>
+                    </div>
+                </div>
+                <div id="collapse-{{ entryId }}" class="collapse" aria-labelledby="heading-{{ entryId }}"
+                     data-parent="#{{ id }}">
+                    <div class="card-body">
+                        {{ pimcore_wysiwyg('text').data | raw }}
+                        <p class="text-right">
+                            {% if not pimcore_input('kurskod').empty %}
+                                {{ 'course_code'|trans ~ ': ' ~ pimcore_input('kurskod').data }}
+                            {% endif %}
+                            {% if pimcore_checkbox('kursplan').checked %}
+                                | <a
+                                    href="https://kursplaner.lu.se/pdf/kurs/en/{{ pimcore_input('kurskod').data }}">
+                                {{ 'download_syllabus'|trans }}
+                            </a>
+                            {% elseif pimcore_checkbox('kursplanSV').checked %}
+                                | <a
+                                    href="https://kursplaner.lu.se/pdf/kurs/sv/{{ pimcore_input('kurskod').data }}">
+                                {{ 'download_syllabus'|trans }}
+                            </a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>

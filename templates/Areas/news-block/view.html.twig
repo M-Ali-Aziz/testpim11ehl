@@ -1,0 +1,69 @@
+{% if newsList is defined and newsList is not empty %}
+    <div class="{{ pimcore_select('color').data }}">
+        <div class="container py-4">
+
+            {# Title, description and links #}
+            <div class="row my-8">
+                <div class="col-12 text-center">
+                    {% if editmode %}
+                        <h2 class="h1">{{ pimcore_input('heading') }}</h2>
+                        <p>{{ pimcore_textarea('beskrivning') }}</p>
+                        <div class="mt-5">
+                            {% for i in 0..2 %}
+                                <div class="btn btn-outline-dark mx-1 mb-3">
+                                    {{ pimcore_link('button'~loop.index) }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {% if not pimcore_input('heading').empty %}
+                            <h2 class="h1">{{ pimcore_input('heading').data }}</h2>
+                        {% endif %}
+                        {% if not pimcore_textarea('beskrivning').empty %}
+                            <p>{{ pimcore_textarea('beskrivning').data }}</p>
+                        {% endif %}
+                        <div class="mt-5">
+                            {% for i in 0..2 %}
+                                {% if not pimcore_link('button'~loop.index).empty %}
+                                    <a href="{{ pimcore_link('button'~loop.index).href }}" class="btn btn-outline-dark mx-1 mb-3">
+                                        {{ pimcore_link('button'~loop.index).text }}
+                                    </a>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            {# Cards #}
+            <div class="row mb-8">
+                {% if landingpage is defined and not pimcore_select('newsLimit').empty %}
+                    {% for item in newsList %}
+                        <div class="col-12 col-lg-3 col-md-6 mb-5 mb-lg-0">
+                            <a href="{{ uri~item.key }}" class="card nav-block h-100">
+                                {% if not pimcore_checkbox('showImage').checked %}
+                                    <div class="p-2">
+                                        <div class="card-img-container">
+                                            <img src="{{ item.image1 }}" alt="{{ item.alt ?? '' }}">
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <div class="card-body">
+                                    <div class="meta ">
+                                        <span class="meta-date">{{ item.creationDate|date('Y-m-d') }}</span>
+                                        <span class="meta-category">{{ item.category ? item.category|trans : '' }}</span>
+                                    </div>
+                                    <h3 class="nav-block-link m-0">{{ item.rubrik(language) }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    {% include 'Areas/news-block/_onStartPage.html.twig' %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% else %}
+    <p>{{ 'no news'|trans }}!</p>
+{% endif %}

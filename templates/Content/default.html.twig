@@ -1,0 +1,66 @@
+{% extends 'Layouts/new.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12 col-lg-8 mb-6 mb-lg-0">
+            <article>
+                {% if editmode %}
+                    <h1>{{ pimcore_input('title') }}</h1>
+                    <div class="nmt-3 mb-3">
+                        {{ pimcore_input('kicker', { 'class': 'text-uppercase mt-0'}) }}
+                    </div>
+                    {{ pimcore_textarea('lead', { 'class': 'lead' }) }}
+                {% else %}
+                    {% if not pimcore_input('title').empty %}
+                        <h1>{{ pimcore_input('title').data }}</h1>
+                    {% endif %}
+                    {% if not pimcore_input('kicker').empty %}
+                        <div class="nmt-3 mb-3">
+                            <p class="text-uppercase mt-0"><strong>{{ pimcore_input('kicker').data }}</strong></p>
+                        </div>
+                    {% endif %}
+                    {% if not pimcore_textarea('lead').empty %}
+                        <p>{{ pimcore_textarea('lead').data }}</p>
+                    {% endif %}
+                {% endif %}
+
+                {{ pimcore_areablock('mainAreablock', {
+                    'allowed': ['wysiwyg','image','blockquote','infobox','snippet','youtube', 'accordion',
+                        'toggle-portrait', 'toggle-content', 'rss', 'newsMain', 'eventlist', 'video', 'eventlistMain',
+                        'heading', 'staff-list'],
+                    'params': {
+                        'newsMain': { 'baseuri': websiteConfig.baseuri },
+                        'staff-list': { 'baseuri': websiteConfig.baseuri },
+                    }
+                }) }}
+            </article>
+        </div>
+
+        <div class="col-12 col-lg-4">
+            {{ pimcore_areablock('rightAreablock', {
+                'allowed': ['wysiwyg', 'image', 'infobox', 'snippet', 'puff', 'uid', 'youtube', 'rss','news',
+                    'heading', 'address-info'],
+                'params': {
+                    'news': { 'baseuri': websiteConfig.baseuri },
+                }
+            }) }}
+        </div>
+    </div>
+
+    {% if editmode %}
+        <style>
+            table, table td, table th {border:none;}
+            .pimcore_block_button_up, .pimcore_block_button_down {display:none !important;}
+            #pimcore_editable_rightAreablock .pimcore_area_edit_button,
+            #pimcore_editable_mainAreablock .pimcore_area_edit_button {z-index: 9999;}
+            #content_sidebar table {margin-bottom:0;}
+            /*.pimcore_tag_input, .pimcore_tag_textarea {padding:5px 10px 0 10px;}*/
+            .x-window .pimcore_tag_input {border: 1px solid #dedbd9;}
+            .info {font-weight:700;margin:0;}
+            .margins {margin:8px 0 0 0;}
+            .embed-responsive {z-index:1;}
+            .pimcore_area_entry {margin: 0px 0 16px!important;}
+        </style>
+    {% endif %}
+{% endblock %}
+

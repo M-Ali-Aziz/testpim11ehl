@@ -1,0 +1,18 @@
+{% if document.property('bootstrap') %}
+    <div class="alert alert-danger" role="alert">
+        Ersätt kalenderelement!
+    </div>
+{% elseif eventList %}
+    <div class="calendar-wrapper calendar-vertical" style="padding:0; margin-top:30px">
+        {% for item in eventList %}
+            <div class="calendar-item">
+                <p class="calendar-category">{{ item.category|trans ?: '' }}</p>
+                <p class="calendar-title"><a href="{{ uri ~ item.key() }}">{{ item.rubrik() }}</a></p>
+                <p class="calendar-lead">{{ ehl_summary(item.ingress, sammanfattning) }}</p>
+                <p class="calendar-date">
+                    {{ ehl_calendar_event_date(language, item.start, item.end, item.showEnd) | raw }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}

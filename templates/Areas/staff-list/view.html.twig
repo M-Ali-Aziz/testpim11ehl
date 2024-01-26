@@ -1,0 +1,45 @@
+{% if staffList %}
+    <article>
+        {{ ehl_staff_list(
+            staffList,
+            {
+                'image': false,
+                'room': false,
+                'department': departmentNumber,
+                'roleinfo': false,
+                'newlucat': true,
+                'showLeaveOfAbsence': false,
+                'isAreaBrick': true,
+                'baseuri': (baseuri != '/') ?: '',
+                'language': language,
+            },
+        ) | raw }}
+
+        {% if departments %}
+            <hr><div class="bg-plaster-50 p-5">
+            <h2 class="mt-0">{{ 'section'|trans }}</h2>
+            <ul>
+                {% for department in departments %}
+                    <li>
+                        <a href="{{ href ~ department.departmentNumber }}">
+                            {{ department.name }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        {# Show Staff with spacial roles #}
+        {% if specialStaffList %}
+            <div class="bg-plaster-50 p-5 mt-3">
+                <h2 class="mt-0">{{ 'other_roles'|trans }}</h2>
+                {{ ehl_staff_person_special_role(specialStaffList, false, baseuri, true) | raw }}
+            </div>
+        {% endif %}
+    </article>
+{% else %}
+    {% if editmode %}
+        <div class="alert alert-danger">{{ 'no staff'|trans }}</div>
+    {% endif %}
+{% endif %}

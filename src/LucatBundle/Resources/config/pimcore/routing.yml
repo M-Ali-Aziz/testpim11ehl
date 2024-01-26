@@ -1,5 +1,0 @@
-lucat:
-    resource: "@LucatBundle/Controller/"
-    type:     annotation
-    prefix:   /
-

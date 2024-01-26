@@ -1,0 +1,70 @@
+{% set targetGroups = websiteObject.targetgroups %}
+{% set subsites = websiteObject.subsites %}
+{% set departments = websiteObject.departments %}
+{% set targetGroupsProcessed = 0 %}
+{% set subsitesProcessed = 0 %}
+
+{# TargetGroups links #}
+{% if targetGroups %}
+    <ul class="navbar-nav flex-row ml-auto">
+        {% for target in targetGroups %}
+            {% set targetGroupsProcessed = targetGroupsProcessed + 1 %}
+            <li class="nav-item">
+                {% if target.type ==  'link' %}
+                    <a class="nav-link px-3" href="{{ target.href }}">
+                        {{ target.property('toolbarTitle') ?? target.property('navigation_name') }}
+                    </a>
+                {% else %}
+                    <a class="nav-link px-3" href="{{ target.fullPath }}">
+                        {{ target.property('toolbarTitle') ?? target.property('navigation_name') }}
+                    </a>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+{# Subsits and Departments #}
+{% if subsites or departments %}
+    <ul class="navbar-nav flex-row ml-5">
+        {# Subsites #}
+        {% if subsites %}
+            {% for subSite in subsites %}
+                {% set subsitesProcessed = subsitesProcessed + 1 %}
+                <li class="nav-item">
+                    {% if subSite.type == 'link' %}
+                        <a class="nav-link px-3" href="{{ subSite.href }}">
+                            {{ subSite.property('toolbarTitle') ?? subSite.property('navigation_name') }}
+                        </a>
+                    {% else %}
+                        <a class="nav-link px-3" href="{{ subSite.fullPath }}">
+                            {{ subSite.property('toolbarTitle') ?? subSite.property('navigation_name') }}
+                        </a>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        {% endif %}
+
+        {# Departments #}
+        {% if departments and targetGroups|length == targetGroupsProcessed and subsites|length == subsitesProcessed %}
+            <li class="nav-item dropdown dropdown-hover">
+                <a class="nav-link dropdown-toggle px-3" href="#" id="sm-lu-institutioner" aria-haspopup="true">
+                    {{ 'departments_toolbar_dropdown'|trans }} &nbsp;<i class="fal fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right text-primary" aria-labelledby="sm-lu-institutioner">
+                    {% for department in departments %}
+                        {% if department.type == 'link' %}
+                            <a class="dropdown-item" href="{{ department.href }}">
+                                {{ department.property('toolbarTitle') ?? department.property('navigation_name') }}
+                            </a>
+                        {% else %}
+                            <a class="dropdown-item" href="{{ department.fullPath }}">
+                                {{ department.property('toolbarTitle') ?? department.property('navigation_name') }}
+                            </a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </li>
+        {% endif %}
+    </ul>
+{% endif %}

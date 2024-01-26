@@ -1,9 +1,0 @@
-{% set pages = websiteObject.mainMenu %}
-{% set requestUri = app.request.requestUri %}
-
-<ul class="nav justify-content-end nav-header-main flex-nowrap">
-    {% for navStartNode in pages %}
-        {% set navigation = pimcore_build_nav(document, navStartNode) %}
-        {{ ehl_main_menu_list(document, navStartNode, navigation)|raw }}
-    {% endfor %}
-</ul>

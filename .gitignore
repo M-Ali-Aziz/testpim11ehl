@@ -1,34 +1,40 @@
 # remove the following ignores for your project
-/app/constants.php
+/config/pimcore/constants.php
 
 # symfony default
 /.web-server-pid
-/app/config/parameters.yml
+/config/pimcore/parameters.yaml
 /build/
 /phpunit.xml
-/web/bundles/
+/public/bundles/
 
 # local config
+/.env
 /.env.local
 /.env.local.php
 /.env.*.local
-!/app/config/local
-/app/config/local/*
-!app/config/local/.gitkeep
+!/config/local
+/config/local/*
+!config/local/.gitkeep
 
-# /var/
 /var/*
 !/var/.gitkeep
-!/var/bundles/
+!/var/classes/
 
-# /web/var/
-/web/var/
-/web/sitemap*.xml
-/web/maintenance.enable
+!/var/config
+/var/config/system.yaml
+/var/config/debug-mode.php
+/var/config/maintenance.php
+
+# project specific recommendations
+/var/config/tag-manager.php
+
+/public/var/
+/public/sitemap*.xml
 
 # PHP-CS-Fixer
-/.php_cs
-/.php_cs.cache
+/.php-cs-fixer.php
+/.php-cs-fixer.cache
 
 # composer
 /vendor/

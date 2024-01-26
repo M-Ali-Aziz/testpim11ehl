@@ -1,0 +1,124 @@
+{% include 'Areas/masonry-a/_masonry.html.twig' %}
+
+<div class="container mason">
+    <div class="masonry-container masonry-container-2by1">
+        <div class="masonry masonry-wide masonry-cols">
+            <div class="masonry-col masonry-col-50">
+                <div class="masonry-row masonry-row-100">
+                    <div class="masonry-tile">
+                        {% if editmode %}
+                            <div class="masonry-tile-img">
+                                <div class="masonry-tile-img-bg">
+                                    {{ pimcore_image('image', {'hidetext': true}) }}
+                                </div>
+                                <div class="masonry-tile-img-content">
+                                    <div class="blockline">
+                                        <div class="linktext">
+                                            {{ pimcore_link('masonryTileLink') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{{ pimcore_link('masonryTileLink').href }}"
+                               class="nav-block masonry-tile-img">
+                                <div class="masonry-tile-img-bg">
+                                    <img src="{{ pimcore_image('image').src }}"
+                                         alt="{{ pimcore_link('masonryTileLink').text }}">
+                                </div>
+                                <div class="masonry-tile-img-content">
+                                    <div class="blockline">
+                                        <h2 class="h1">
+                                            <span class="a nav-block-link">
+                                                {{ pimcore_link('masonryTileLink').text }}&nbsp;
+                                                <i class="fal fa-chevron-circle-right fa-sm"></i>
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="masonry-col masonry-col-50">
+                <div class="masonry-row masonry-row-35">
+                    <div class="masonry-tile">
+                        {% if editmode %}
+                            <div class="{{ pimcore_select('color2').data }}" style="border: dashed #4d4c44 1px;">
+                                <div class="pl-4 pt-3">
+                                    {{ pimcore_select('color2', {
+                                        'reload': true,
+                                        'store': colorStore
+                                    }) }}
+                                </div>
+                                <div class="linktext m-0 py-0 px-4">
+                                    {{ pimcore_link('masonryTileLink4') }}
+                                </div>
+                                <div class="px-4 py-2">
+                                    {{ pimcore_textarea('masonryTileText4', {
+                                        'nl2br': true,
+                                        'height': 80
+                                    }) }}
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{{ pimcore_link('masonryTileLink4').href }}"
+                               class="nav-block {{ pimcore_select('color2').data }}"
+                               aria-label="{{ pimcore_link('masonryTileLink4').text }}">
+                                <div class="p-3 p-lg-5">
+                                    <h2 class="h1">
+                                        <span class="a nav-block-link">
+                                            {{ pimcore_link('masonryTileLink4').text }}&nbsp;
+                                            <i class="fal fa-chevron-circle-right fa-sm"></i>
+                                        </span>
+                                    </h2>
+                                    <p>
+                                        {{ pimcore_textarea('masonryTileText4', {'nl2br': true}) }}
+                                    </p>
+                                </div>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="masonry-row masonry-row-65">
+                    <div class="masonry-tile">
+                        {% if editmode %}
+                            <div class="masonry-tile-img">
+                                <div class="masonry-tile-img-bg">
+                                    {{ pimcore_image('image2', {'hidetext': true}) }}
+                                </div>
+                                <div class="masonry-tile-img-content">
+                                    <div class="blockline">
+                                        <div class="linktext">
+                                            {{ pimcore_link('masonryTileLink2') }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <a href="{{ pimcore_link('masonryTileLink2').href }}"
+                               class="nav-block masonry-tile-img">
+                                <div class="masonry-tile-img-bg">
+                                    <img src="{{ pimcore_image('image2').src }}"
+                                         alt="{{ pimcore_link('masonryTileLink2').text }}">
+                                </div>
+                                <div class="masonry-tile-img-content">
+                                    <div class="blockline">
+                                        <h2 class="h1">
+                                            <span class="a nav-block-link">
+                                                {{ pimcore_link('masonryTileLink2').text }}&nbsp;
+                                                <i class="fal fa-chevron-circle-right fa-sm"></i>
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

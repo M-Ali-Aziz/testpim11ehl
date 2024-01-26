@@ -1,0 +1,205 @@
+parameters:
+    secret: iF+zK/GsmfZe4R2DoctRda5E+ZmyX64w
+
+    # customize the full path to external executables
+    # normally they are auto-detected by `which program` or auto-discovered in the configured path in
+    # System Settings -> General -> Additional $PATH variable
+    # but in general it's a good idea to have your programs in your $PATH environment variable (system wide)
+
+    #pimcore_executable_composer: php /opt/vendor/bin/composer.phar
+    #pimcore_executable_html2text: /usr/local/html2text/bin/html2text
+    #pimcore_executable_soffice: /opt/libreoffice/bin/soffice
+    #pimcore_executable_gs: /opt/ghostscript/bin/gs
+    #pimcore_executable_pdftotext: /opt/tools/pdftotext
+    #pimcore_executable_xvfb-run: /opt/tools/xvfb-run
+    #pimcore_executable_pngcrush: /opt/tools/pngcrush
+    #pimcore_executable_zopflipng: /opt/tools/zopflipng
+    #pimcore_executable_pngout: /opt/tools/pngout
+    #pimcore_executable_advpng: /opt/tools/advpng
+    #pimcore_executable_cjpeg: /opt/tools/cjpeg
+    #pimcore_executable_jpegoptim: /opt/tools/jpegoptim
+    #pimcore_executable_php: /usr/local/custom-php/bin/php
+    #pimcore_executable_nice: /opt/tools/nice
+    #pimcore_executable_nohup: /opt/tools/nohup
+    #pimcore_executable_ffmpeg: /opt/tools/ffmpeg
+    #pimcore_executable_exiftool: /opt/tools/exiftool
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        # automatically injects dependencies in your services
+        autowire: true
+        # automatically registers your services as commands, event subscribers, etc.
+        autoconfigure: true
+        # this means you cannot fetch services directly from the container via $container->get()
+        # if you need to do this, you can override this setting on individual services
+        public: false
+
+    AppBundle\:
+        resource: '../src/*'
+        exclude: '../src/{Document,DependencyInjection,Resources,Kernel.php}'
+#    #
+#    # CONTROLLERS
+#    #
+#
+#    # auto-register all controllers as services
+#    AppBundle\Controller\:
+#        resource: '../src/Controller'
+#        public: true
+#        tags: [ 'controller.service_arguments' ]
+#
+#    #
+#    # COMMANDS
+#    #
+#
+#    # auto-register all commands as services
+#    AppBundle\Command\:
+#        resource: '../src/Command/*'
+#        tags: [ 'console.command' ]
+#
+#    # ---------------------------------------------------------
+#    # Misc Services
+#    # ---------------------------------------------------------
+#    AppBundle\Services\CustomNavigationService: ~
+#    AppBundle\Services\CustomWebsiteService: ~
+#    AppBundle\Services\StaffService: ~
+#
+    # --- LinkGenerator -----------------------------------------------
+    # LinkGenerator for News
+    AppBundle.website.news_linkGenerator:
+        class: AppBundle\Website\LinkGenerator\NewsLinkGenerator
+        public: true
+
+    # LinkGenerator for Events
+    AppBundle.website.events_linkGenerator:
+        class: AppBundle\Website\LinkGenerator\EventsLinkGenerator
+        public: true
+
+    # --- OptionsProvider -----------------------------------------------
+    # Lokal OptionsProvider for Evant-object
+    Appbundle.website.optionsprovider.lokal:
+        class: AppBundle\Website\OptionsProvider\Lokal
+        public: true
+
+    # --- Areabrick -----------------------------------------------
+    # specify the EventlistMain brick ID manually
+    App\Document\Areabrick\EventlistMain:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: eventlistMain }
+
+    # specify the EventlistVertical brick ID manually
+    App\Document\Areabrick\EventlistVertical:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: eventlistVertical }
+
+    # specify the NewsMain brick ID manually
+    App\Document\Areabrick\NewsMain:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: newsMain }
+
+    # specify the NewsVertical brick ID manually
+    App\Document\Areabrick\NewsVertical:
+        arguments: [ '@logger' ]
+        tags:
+            - { name: pimcore.area.brick, id: newsVertical }
+
+
+    # --- Templating helper ----------------------------------------
+    # Address custom templating helper
+    AppBundle\Templating\Helper\Address:
+        public: true
+        tags:
+            - { name: templating.helper, alias: address }
+
+    # CalendarEventDate custom templating helper
+    AppBundle\Templating\Helper\CalendarEventDate:
+        public: true
+        tags:
+            - { name: templating.helper, alias: calendarEventDate }
+
+    # CommaSeparatedValues custom templating helper
+    AppBundle\Templating\Helper\CommaSeparatedValues:
+        public: true
+        tags:
+            - { name: templating.helper, alias: commaSeparatedValues }
+
+    # DepartmentName custom templating helper
+    AppBundle\Templating\Helper\DepartmentName:
+        public: true
+        tags:
+            - { name: templating.helper, alias: departmentName }
+
+    # DisplayImage custom templating helper
+    AppBundle\Templating\Helper\DisplayImage:
+        public: true
+        tags:
+            - { name: templating.helper, alias: displayImage }
+
+    # LanguageSelector custom templating helper
+    AppBundle\Templating\Helper\LanguageSelector:
+        public: true
+        tags:
+            - { name: templating.helper, alias: languageSelector }
+
+    # Meta custom templating helper
+    AppBundle\Templating\Helper\Meta:
+        public: true
+        tags:
+            - { name: templating.helper, alias: meta }
+
+    # PageLastUpdated custom templating helper
+    AppBundle\Templating\Helper\PageLastUpdated:
+        public: true
+        tags:
+            - { name: templating.helper, alias: pageLastUpdated }
+
+    # PageManager custom templating helper
+    AppBundle\Templating\Helper\PageManager:
+        public: true
+        tags:
+            - { name: templating.helper, alias: pageManager }
+
+    # PhoneNumber custom templating helper
+    AppBundle\Templating\Helper\PhoneNumber:
+        public: true
+        tags:
+            - { name: templating.helper, alias: phoneNumber }
+
+    # Publication custom templating helper
+    AppBundle\Templating\Helper\Publication:
+        public: true
+        tags:
+            - { name: templating.helper, alias: publication }
+
+    # ResearchArea custom templating helper
+    AppBundle\Templating\Helper\ResearchArea:
+        public: true
+        tags:
+            - { name: templating.helper, alias: researchArea }
+
+    # Staff custom templating helper
+    AppBundle\Templating\Helper\Staff:
+        public: true
+        tags:
+            - { name: templating.helper, alias: staff }
+
+    # Summary custom templating helper
+    AppBundle\Templating\Helper\Summary:
+        public: true
+        tags:
+            - { name: templating.helper, alias: summary }
+
+    # Dropdown custom templating helper
+    AppBundle\Templating\Helper\Navigation\Dropdown:
+        public: true
+        tags:
+            - { name: templating.helper, alias: dropdown }
+
+    # HamburgerMenu custom templating helper
+    AppBundle\Templating\Helper\Navigation\HamburgerMenu:
+        public: true
+        tags:
+            - { name: templating.helper, alias: hamburgerMenu }
